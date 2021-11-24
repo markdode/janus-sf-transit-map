@@ -1,3 +1,39 @@
-<div *ngIf="apiLoaded | async">
-  <google-map></google-map>
-</div>
+<mat-card>
+  <div *ngIf="apiLoaded | async">
+    <google-map height="1100px"
+                width="1500px"
+                [options]="options">
+      <map-marker #marker="mapMarker"
+                  *ngFor="let markerData of markerDataList; trackBy: trackByFn"
+                  [position]="markerData.position"
+                  [icon]="icon"
+                  (mapClick)="openInfoWindow(marker, markerData.info)"></map-marker>
+      <map-info-window>
+        <div *ngIf="infoWindowContent.lineName"><b>{{infoWindowContent.lineName}}</b></div>
+        <div *ngIf="infoWindowContent.operatorName">{{infoWindowContent.operatorName}}</div>
+        <div *ngIf="infoWindowContent.busId">Vehicle Id: {{infoWindowContent.busId}}</div>
+      </map-info-window>
+    </google-map>
+  </div>
+</mat-card>
+<mat-card>
+  <form class='line-filter'>
+    <mat-form-field class='line-filter-full' appearance='fill'>
+      <mat-label>Bus Line</mat-label>
+      <input matInput type="text"
+             placeholder="Pick a line"
+             aira-label="Bus Line"
+             [formControl]="lineControl"
+             [matAutocomplete]="auto"
+             (keyup.enter)="updateMap()">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let lineName of filteredLineNames | async" [value]="lineName">
+          {{lineName}}
+        </mat-option>
+      </mat-autocomplete>
+      <button type="button" *ngIf="lineControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="reset()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+</mat-card>

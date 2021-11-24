@@ -1,0 +1,9 @@
+.line-filter {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.line-filter-full {
+  width: 100%;
+}
