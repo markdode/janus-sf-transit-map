@@ -9,7 +9,7 @@ export interface Operator {
   Website: string;
   PrimaryMode: string;
   PrivateCode: string;
-  Montiored: boolean;
+  Monitored: boolean;
   OtherModes: string;
 }
 

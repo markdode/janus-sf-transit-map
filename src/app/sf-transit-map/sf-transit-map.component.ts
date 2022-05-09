@@ -52,7 +52,7 @@ export class SfTransitMapComponent implements OnInit {
 
   ngOnInit(): void {
     this.sfBayTransitService.getOperators().subscribe(res => {
-      this.operators = res.filter(op => op.Montiored === true);
+      this.operators = res.filter(op => op.Monitored === true);
       this.operatorIds = this.operators.map(op => op.Id);
       let resList = this.operatorIds.map(id => this.sfBayTransitService.getLines(id));
       forkJoin(resList).pipe(map(data => data.reduce((result,arr)=>[...result,...arr],[]))).subscribe(res => {
