@@ -8,7 +8,7 @@ app.use(express.static(__dirname + '/dist/janus-sf-transit-map'));
 
 app.get('/*', function(req,res) {
 
-res.sendFile(path.join(__dirname+'/dist/janus-sf-transit-map/src/index.html'));
+res.sendFile(path.join(__dirname+'/dist/janus-sf-transit-map/index.html'));
 });
 
 // Start the app by listening on the default Heroku port
