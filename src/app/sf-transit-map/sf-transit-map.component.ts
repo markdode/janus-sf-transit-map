@@ -34,7 +34,8 @@ export class SfTransitMapComponent implements OnInit {
   options: google.maps.MapOptions = {
     // center: {lat: 37.9730797, lng: -122.019981},
     center: {lat: 37.822027, lng: -122.377561},
-    zoom: 10
+    zoom: 10,
+    mapTypeControl: false,
   };
   icon = "https://img.icons8.com/fluency/32/000000/double-decker-bus.png";
 

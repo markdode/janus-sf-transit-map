@@ -15,23 +15,32 @@
   </google-map>
 </div>
 <mat-card class="line-card">
-  <form class='line-filter'>
-    <mat-form-field class='line-filter-full' appearance='fill'>
-      <mat-label>Bus Line</mat-label>
-      <input matInput type="text"
-             placeholder="Pick a line"
-             aira-label="Bus Line"
-             [formControl]="lineControl"
-             [matAutocomplete]="auto"
-             (keyup.enter)="updateMap()">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option *ngFor="let lineName of filteredLineNames | async" [value]="lineName">
-          {{lineName}}
-        </mat-option>
-      </mat-autocomplete>
-      <button type="button" *ngIf="lineControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="reset()">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-  </form>
+  <mat-tab-group>
+    <mat-tab label="Buses">
+      <form class='line-filter'>
+        <mat-form-field class='line-filter-full' appearance='fill'>
+          <mat-label>Bus Line</mat-label>
+          <input matInput type="text"
+                 placeholder="Pick a line"
+                 aira-label="Bus Line"
+                 [formControl]="lineControl"
+                 [matAutocomplete]="auto"
+                 (keyup.enter)="updateMap()">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let lineName of filteredLineNames | async" [value]="lineName" (click)="updateMap()">
+              {{lineName}}
+            </mat-option>
+          </mat-autocomplete>
+          <button type="button" *ngIf="lineControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="reset()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+    </mat-tab>
+    <mat-tab label="Info">
+      <p>This is a website where you can see the locations of all currently running busses in the San Francisco Bay Area</p>
+      <p>Under the Busses tab, you can select a bus line to see all the busses in that line</p>
+      <p>You can also click on a bus to see some more info</p>
+    </mat-tab>
+  </mat-tab-group>
 </mat-card>
