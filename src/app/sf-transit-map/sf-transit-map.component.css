@@ -7,3 +7,10 @@
 .line-filter-full {
   width: 100%;
 }
+
+.line-card {
+  position: absolute;
+  top: 4vh;
+  left: 4vh;
+  width: 15vw;
+}

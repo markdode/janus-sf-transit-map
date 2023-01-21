@@ -1,22 +1,20 @@
-<mat-card>
-  <div *ngIf="apiLoaded | async">
-    <google-map height="1100px"
-                width="1500px"
-                [options]="options">
-      <map-marker #marker="mapMarker"
-                  *ngFor="let markerData of markerDataList; trackBy: trackByFn"
-                  [position]="markerData.position"
-                  [icon]="icon"
-                  (mapClick)="openInfoWindow(marker, markerData.info)"></map-marker>
-      <map-info-window>
-        <div *ngIf="infoWindowContent.lineName"><b>{{infoWindowContent.lineName}}</b></div>
-        <div *ngIf="infoWindowContent.operatorName">{{infoWindowContent.operatorName}}</div>
-        <div *ngIf="infoWindowContent.busId">Vehicle Id: {{infoWindowContent.busId}}</div>
-      </map-info-window>
-    </google-map>
-  </div>
-</mat-card>
-<mat-card>
+<div *ngIf="apiLoaded | async">
+  <google-map height="100vh"
+              width="100vw"
+              [options]="options">
+    <map-marker #marker="mapMarker"
+                *ngFor="let markerData of markerDataList; trackBy: trackByFn"
+                [position]="markerData.position"
+                [icon]="icon"
+                (mapClick)="openInfoWindow(marker, markerData.info)"></map-marker>
+    <map-info-window>
+      <div *ngIf="infoWindowContent.lineName"><b>{{infoWindowContent.lineName}}</b></div>
+      <div *ngIf="infoWindowContent.operatorName">{{infoWindowContent.operatorName}}</div>
+      <div *ngIf="infoWindowContent.busId">Vehicle Id: {{infoWindowContent.busId}}</div>
+    </map-info-window>
+  </google-map>
+</div>
+<mat-card class="line-card">
   <form class='line-filter'>
     <mat-form-field class='line-filter-full' appearance='fill'>
       <mat-label>Bus Line</mat-label>
